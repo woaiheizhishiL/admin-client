@@ -6,10 +6,14 @@ import "./login.less";
 
 const { Item } = Form;
 
-export default class Login extends Component {
+class Login extends Component {
   handleSubmit = () => {};
 
   render() {
+    
+    // console.log('Login render()',this.props.form)
+    const { getFieldDecorator } = this.props.form
+
     return (
       <div className="login">
         <header className="login-header">
@@ -20,20 +24,35 @@ export default class Login extends Component {
           <h1>用户登录</h1>
           <Form onSubmit={this.handleSubmit} className="login-form">
             <Item>
-              <Input
-                prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
-                placeholder="用户名"
-              />
+              {
+                getFieldDecorator("password", {
+                rules: [{ required: true, message: "Please input your Password!" }]
+                })(
+                  <Input
+                    prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
+                    placeholder="用户名"
+                  />
+                )
+              }
+              
             </Item>
             <Item>
               <Input
-                prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
+                prefix={
+                  <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+                }
                 type="password"
                 placeholder="密码"
               />
             </Item>
             <Item>
-            <Button type="primary" htmlType="submit" className="login-form-button" >登陆</Button>
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="login-form-button"
+              >
+                登陆
+              </Button>
             </Item>
           </Form>
         </div>
@@ -41,3 +60,7 @@ export default class Login extends Component {
     );
   }
 }
+
+const LoginWrap = Form.create()(Login)
+export default LoginWrap
+ 
