@@ -7,7 +7,14 @@ import "./login.less";
 const { Item } = Form;
 
 class Login extends Component {
-  handleSubmit = () => {};
+  handleSubmit = (event) => {
+    event.preventDefault()//阻止表单提交
+    const form = this.props.form
+    const username = form.getFieldValue('username')
+    const password = form.getFieldValue('password')
+    const values = form.getFieldsValue()
+    console.log(username,password,values)
+  }
 
   render() {
     
@@ -25,25 +32,27 @@ class Login extends Component {
           <Form onSubmit={this.handleSubmit} className="login-form">
             <Item>
               {
-                getFieldDecorator("password", {
-                rules: [{ required: true, message: "Please input your Password!" }]
-                })(
+                getFieldDecorator("username")(
                   <Input
                     prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
                     placeholder="用户名"
                   />
                 )
-              }
-              
+              } 
             </Item>
             <Item>
-              <Input
-                prefix={
-                  <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
-                }
-                type="password"
-                placeholder="密码"
-              />
+            {
+                getFieldDecorator("password")(
+                  <Input
+                    prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
+                    type="password"
+                    placeholder="密码"
+                  />
+                )
+              } 
+
+
+              
             </Item>
             <Item>
               <Button
