@@ -13,7 +13,22 @@ class Login extends Component {
     const username = form.getFieldValue('username')
     const password = form.getFieldValue('password')
     const values = form.getFieldsValue()
-    console.log(username,password,values)
+    // console.log(username,password,values)
+  }
+
+  validatePwd = (rule, value, callback) => {
+    // value = value.trim()
+    if(value===''){
+      callback('密码必须输入')
+    }else if(value.length<4){
+      callback('密码必须大于等于4位')
+    }else if(value.length>12){
+      callback('密码必须小于等于12位')
+    }else if(!/^[a-zA-Z0-9_]+$/.test(value)){
+      callback('用户名必须是英文、数字或下划线组成')
+    }else{
+      callback()
+    }
   }
 
   render() {
@@ -50,7 +65,12 @@ class Login extends Component {
             </Item>
             <Item>
             {
-                getFieldDecorator("password")(
+                getFieldDecorator("password",{
+                  rules:[
+                    {validator:this.validatePwd}
+                  ]
+                  
+                })(
                   <Input
                     prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
                     type="password"
