@@ -32,7 +32,15 @@ class Login extends Component {
           <Form onSubmit={this.handleSubmit} className="login-form">
             <Item>
               {
-                getFieldDecorator("username")(
+                getFieldDecorator("username", {
+                  rules: [
+                    { required: true, whitespace:true, message: '用户名必须输入' },
+                    { min: 4, message: '用户名不能小于4位' },
+                    { max: 12, message: '用户名不能大于12位' },
+                    { pattern: /^[a-zA-Z0-9_]+$/, message: '用户名必须是英文、数字或下划线组成' }
+
+                ],
+                })(
                   <Input
                     prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
                     placeholder="用户名"
