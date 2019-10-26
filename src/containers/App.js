@@ -9,16 +9,21 @@ import { increment,decrement } from '../redux/action-creators'
 //         count: state
 //     }
 // }
-const mapStateToprops =state => ({count: state})
+// const mapStateToprops =state => ({count: state})
 
-const mapDispatchToProps = (dispatch) => ({
-    increment: number => dispatch(increment(number)),
-    decrement: number => dispatch(decrement(number))
-})
+// const mapDispatchToProps = (dispatch) => ({
+//     increment: number => dispatch(increment(number)),
+//     decrement: number => dispatch(decrement(number))
+// })
+
+// export default connect(
+//     mapStateToprops,
+//     mapDispatchToProps
+// )(Counter) 
 
 export default connect(
-    mapStateToprops,
-    mapDispatchToProps
+    state => ({count: state}),
+    {increment,decrement}
 )(Counter) 
 
  
