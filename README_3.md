@@ -9,12 +9,18 @@
     react-redux:简化redux使用
     redux-thunk:redux异步编程
     redux-devtools-extension:为了chrome的redux调试
+    axios: 发ajax请求(与后台交互)
 
 
 ## 编码要点
 ### 1. 搭建redux开发环境
  1).下载相关包
  2).创建相关的文件/文件夹
+
+### 2. 测试接口
+  1).接口文档
+  2).postman工具
+
 ### 2. 对axios进行ajax请求二次封装
 
 ### 3. 解决开发时ajax请求跨域问题
