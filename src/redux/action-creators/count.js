@@ -1,4 +1,4 @@
-import {INCREMENT,DECREMENT} from './action-types'
+import {INCREMENT,DECREMENT} from '../action-types'
 
 export const increment = (number) => ({type:INCREMENT,data:number})
 
@@ -9,8 +9,10 @@ export const incrementAsync = (number,delyTime) => {
         setTimeout(() => {
              dispatch(increment(number))
         }, delyTime);
-    }
+    } 
 } 
+
+
 
 
 // incrementAsync = (number,delayTime) => dispatch => {}     

@@ -1,7 +1,7 @@
-import {INCREMENT,DECREMENT} from './action-types'
+import {INCREMENT,DECREMENT} from '../action-types'
 
 const initCount = 1
-function count (state = initCount,action) {
+export default function count (state = initCount,action) {
 console.log('cont()',state,action)
 
     switch (action.type) { 
