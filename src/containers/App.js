@@ -22,7 +22,7 @@ import { increment,decrement,incrementAsync } from '../redux/action-creators'
 // )(Counter) 
 
 export default connect(
-    state => ({count: state}),
+    state => ({count: state.count}),
     {increment,decrement,incrementAsync}
 )(Counter) 
 

@@ -1,7 +1,8 @@
+import { combineReducers } from 'redux'
 import {INCREMENT,DECREMENT} from './action-types'
 
 const initCount = 1
-export default function count (state = initCount,action) {
+function count (state = initCount,action) {
 console.log('cont()',state,action)
 
     switch (action.type) { 
@@ -22,7 +23,11 @@ function products(state=initProducts,action){
             // state.unshift(product)//不能直接修改state数据
             return [product,...state]
         default:
-            break;
+            return state
     }
 }
  
+export default combineReducers({
+    count,
+    products
+})
