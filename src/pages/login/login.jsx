@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Form, Icon, Input, Button } from "antd";
-import axios from 'axios'
 import qs from 'qs'
 
 import logo from "./images/logo.png";
 import "./login.less";
+import ajax from '../../api/ajax'
 
 const { Item } = Form;
 
@@ -18,7 +18,9 @@ class Login extends Component {
         //成功
         console.log("发ajax请求", values);
 
-        axios.post('/login',qs.stringify(values))
+        //axios.post('/login',qs.stringify(values))//username=admin&password=admin
+        ajax.post('/login',qs.stringify(values))
+
            .then(response =>{
              const result = response.data
              console.log('请求成功',result)

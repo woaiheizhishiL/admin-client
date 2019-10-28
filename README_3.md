@@ -23,6 +23,7 @@
 
 ### 2. 对axios进行ajax请求二次封装
 
+
 ### 3. 解决开发时ajax请求跨域问题
 
 ### 4. 使用store插件简化localStorage操作
