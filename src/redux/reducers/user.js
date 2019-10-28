@@ -1,9 +1,11 @@
 import {SAVE_USER_TOKEN} from '../action-types'
 
+const _user = JSON.parse(localStorage.getItem('user_key') || '{}')
+const _token = localStorage.getItem('token_key')
 const initUser = {
-    user:{},
-    token:'',
-    hasLogin:false
+    user:_user,
+    token:_token,
+    hasLogin:_token && _user._id
 }
 export default function user(state = initUser,action){
     switch (action.type) {
