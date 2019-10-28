@@ -7,12 +7,18 @@ import {connect} from 'react-redux'
 import {loginAsync} from '../../redux/action-creators/user'
 import logo from "./images/logo.png";
 import "./login.less";
-import ajax from '../../api/ajax'
-import Password from "antd/lib/input/Password";
+// import ajax from '../../api/ajax'
+// import Password from "antd/lib/input/Password";//啥时候删除的？？？
+
 
 const { Item } = Form;
 
-class Login extends Component {
+@connect(
+  state =>({hasLogin:state.user.hasLogin}),
+  {loginAsync}
+)
+@Form.create()
+class Login extends Component { 
   handleSubmit = event => {
     event.preventDefault(); //阻止表单提交
 
@@ -147,7 +153,11 @@ class Login extends Component {
   }
 }
 
-export default connect(
+
+
+/* export default connect(
   state =>({hasLogin:state.user.hasLogin}),
   {loginAsync}
-)(Form.create()(Login))
+)(Form.create()(Login)) */
+
+export default Login
