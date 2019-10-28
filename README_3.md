@@ -23,10 +23,28 @@
   1).接口文档
   2).postman工具
 
-### 2. 对axios进行ajax请求二次封装
+### 3. 使用ajax发请求，解决开发时ajax请求跨域问题
+    1).axios的基本使用
+    2).开发解决ajax跨域
+       配置
+       请求的url不用制指定前面的基本路径
+    注意：最后返回config
+### 3. 对axios进行ajax请求二次封装 
+   1).请求前处理：请求拦截器成功回调中
+      a.对象类型post请求体data数据，修改成urlncoded格式(默认汇用json)
+      b.显示请求的progress
 
+   2).请求成功后处理：响应拦截器成功回调中
+      a.方式一：返回response.data ===> 后面的请求处理代码需要判断status来做不同处理
+      b.方式二：
+         操作成功了(status是0),返回response.data
+         操作失败了，返回失败的promise，reason为response.data.msg  ===> 后面的请求处理代码catch来处理。
 
-### 3. 解决开发时ajax请求跨域问题
+   3).请求失败后处理：响应拦截器失败回调中
+      统一处理请求错误
+      a.显示一个错误提示：'请求出错：'+error.message
+      b.终端promise链：返回peding状态的promise
+     
 
 ### 4. 使用store插件简化localStorage操作
 

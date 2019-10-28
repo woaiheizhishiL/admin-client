@@ -1,0 +1,1 @@
+export const SAVE_USER_TOKEN = 'save_user_token'
