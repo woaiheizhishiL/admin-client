@@ -22,18 +22,11 @@ class Login extends Component {
         //ajax.post('/login2',qs.stringify(values))
         ajax.post('/login',values)
 
-           .then(response =>{
-             const result = response.data
-             console.log('请求成功',result)
-             if(result.status===0){
-               const {user,token} = result.data
-               console.log('登陆成功',user,token) 
-             }else{
-               console.log('登陆失败',result.msg)
-             }
+           .then(({user,token}) =>{
+             console.log('登陆成功',user,token)
            })
            .catch(error =>{
-             console.log("请求出错了",error.message)
+             console.log(error)
            })
 
       } else {

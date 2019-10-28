@@ -20,7 +20,12 @@ instance.interceptors.request.use(( config => {
 instance.interceptors.response.use(
     response => {
         console.log('response interceptor onResolved()')
-        return response
+        const result = response.data
+        if(result.status===0){
+            return result.data || {} //避免取值时undefined报错
+        }else{
+            return Promise.reject(result.msg || '操作失败，未知原因')
+        }
     },
     error => {
     console.log('response iterceptor onRejected()')
