@@ -20,13 +20,24 @@ class Login extends Component {
 
         //axios.post('/login',qs.stringify(values))//username=admin&password=admin
         //ajax.post('/login2',qs.stringify(values))
-        ajax.post('/login2',values)
-
+        
+        /* ajax.post('/login',values)
            .then(({user,token}) =>{
              console.log('登陆成功',user,token)
            })
            .catch(error =>{
              console.log(error)
+           }) */
+
+           ajax.post('/login',values)
+           .then((result) =>{
+             const {status,data:{user,token}={},msg,xxx="abc"} = result//登陆失败没有data，所以设置一个初始值{}
+             console.log('xxx',xxx)
+             if(status===0){
+             console.log('登陆成功',user,token )
+             }else{
+             console.log('登陆失败',msg)
+             }  
            })
 
       } else {
