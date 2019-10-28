@@ -1,4 +1,6 @@
 import axios from 'axios'
+//import { object } from 'prop-types'//啥时候删的？？？
+import qs from 'qs'
 
 const instance = axios.create({
     timeout:10000
@@ -6,6 +8,12 @@ const instance = axios.create({
 
 instance.interceptors.request.use(( config => {
     console.log('request iterceptor onResolved()')
+    
+    const {data}=config
+    if (data instanceof Object){
+        config.data = qs.stringify(data) 
+    }
+
     return config
 }))
 

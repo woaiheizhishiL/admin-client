@@ -19,7 +19,8 @@ class Login extends Component {
         console.log("发ajax请求", values);
 
         //axios.post('/login',qs.stringify(values))//username=admin&password=admin
-        ajax.post('/login',qs.stringify(values))
+        //ajax.post('/login2',qs.stringify(values))
+        ajax.post('/login',values)
 
            .then(response =>{
              const result = response.data
