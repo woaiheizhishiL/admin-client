@@ -1,4 +1,4 @@
-import {SAVE_USER_TOKEN} from '../action-types'
+import {SAVE_USER_TOKEN,REMOVE_USER_TOKEN} from '../action-types'
 
 const _user = JSON.parse(localStorage.getItem('user_key') || '{}')
 const _token = localStorage.getItem('token_key')
@@ -15,6 +15,12 @@ export default function user(state = initUser,action){
                 user,
                 token,
                 hasLogin:true
+            }
+            case REMOVE_USER_TOKEN:
+            return {
+                user:{},
+                token:'',
+                hasLogin:false
             }
         default:
             return state

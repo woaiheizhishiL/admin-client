@@ -2,9 +2,14 @@ import {reqLogin} from '../../api'
 import { message } from 'antd'
 import { isImport } from '@babel/types'
 
-import {SAVE_USER_TOKEN} from '../action-types'
+import {SAVE_USER_TOKEN,REMOVE_USER_TOKEN} from '../action-types'
 
 const saveUserToken = (user,token) => ({type:SAVE_USER_TOKEN,data:{user,token}})
+export const removeUserToken = () => {
+    localStorage.removeItem('user_key')
+    localStorage.removeItem('token_key')
+    return {type:REMOVE_USER_TOKEN}
+}
 
  export function loginAsync(username,password){
      return async dispatch => {
