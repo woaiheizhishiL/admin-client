@@ -20,7 +20,7 @@ class Login extends Component {
 
         //axios.post('/login',qs.stringify(values))//username=admin&password=admin
         //ajax.post('/login2',qs.stringify(values))
-        ajax.post('/login',values)
+        ajax.post('/login2',values)
 
            .then(({user,token}) =>{
              console.log('登陆成功',user,token)

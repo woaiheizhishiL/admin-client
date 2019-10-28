@@ -1,6 +1,7 @@
 import axios from 'axios'
 //import { object } from 'prop-types'//啥时候删的？？？
 import qs from 'qs'
+import {message} from 'antd'
 
 const instance = axios.create({
     timeout:10000
@@ -29,8 +30,8 @@ instance.interceptors.response.use(
     },
     error => {
     console.log('response iterceptor onRejected()')
-    //throw error
-    return Promise .reject(error)
+    message.error('请求出错：'+error.message)
+    return new Promise(()=>{})
     }
 )
 
