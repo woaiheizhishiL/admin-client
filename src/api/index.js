@@ -5,3 +5,11 @@ export const reqLogin = ({username,password}) => ajax({
     method:'POST',
     data:{username,password}
 })
+
+export const reqUsers = () => ajax({
+    url:'/manage/user/list',
+    method:'GET',
+
+})
+// ajax('/manage/user/list')
+// ajax.get('/manage/user/list')

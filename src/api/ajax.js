@@ -3,7 +3,12 @@ import axios from 'axios'
 import qs from 'qs'
 import {message} from 'antd'
 import NProgress from 'nprogress'
+
 import 'nprogress/nprogress.css'
+import store from '../redux/store'
+import {removeUserToken} from '../redux/action-creators/user'
+import history from '../history'
+
 
 const instance = axios.create({
     timeout:10000
@@ -18,7 +23,12 @@ instance.interceptors.request.use(( config => {
         config.data = qs.stringify(data) 
     }
 
-    return config
+    const token = store.getState().user.token
+    if(token){
+        config.headers['Authorization'] = 'atguigu_'+token
+    }
+
+    return config 
 }))
 
 instance.interceptors.response.use(
@@ -36,9 +46,26 @@ instance.interceptors.response.use(
     },
     error => {
     console.log('response iterceptor onRejected()')
-    message.error('请求出错：'+error.message)
-    return new Promise(()=>{})
+    NProgress.done()//隐藏请求进度
+  
+    const {status,data:{msg}={}} = error.response
+    if(status===401){
+    //   error.response.data.msg   //啥时候删除的？
+
+       if(history.location.pathname !== '/login'){//this.props.history.location.pathname
+        message.error(msg)
+        store.dispatch(removeUserToken())  
+       }
+      
+    }else if(status===404){
+        message.error('请求支援不存在')
+    }else{
+        message.error('请求出错：'+error.message) 
     }
+    
+    
+    return new Promise(()=>{}) 
+    } 
 )
 
 export default instance 
