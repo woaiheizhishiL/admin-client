@@ -6,18 +6,25 @@ import {connect} from 'react-redux'
 
 import {loginAsync} from '../../redux/action-creators/user'
 import logo from "./images/logo.png";
-import "./login.less";
+import "./index.less";
 // import ajax from '../../api/ajax'
 // import Password from "antd/lib/input/Password";//啥时候删除的？？？
+import WithCheckLogin from '../with-check-login'
 
 
 const { Item } = Form;
 
-@connect(
+/* connect(
   state =>({hasLogin:state.user.hasLogin}),
+  {loginAsync}
+)(Form.create()(WithCheckLogin(Login))) */
+
+@connect(
+  state =>({}),
   {loginAsync}
 )
 @Form.create()
+@WithCheckLogin
 class Login extends Component { 
   handleSubmit = event => {
     event.preventDefault(); //阻止表单提交
@@ -83,11 +90,11 @@ class Login extends Component {
     // console.log('Login render()',this.props.form)
     const { getFieldDecorator } = this.props.form;
 
-    const {hasLogin} = this.props
+    /* const {hasLogin} = this.props
     if(hasLogin){
        //this.props.history.replace('/')//时间回调中使用
        return <Redirect to="/"/>
-    }
+    } */
 
     return (
       <div className="login">

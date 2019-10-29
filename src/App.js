@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Router,Route,Switch } from 'react-router-dom'
-import Login from './containers/login/login'
-import Admin from './containers/admin/admin'
+import Login from './containers/login'
+import Admin from './containers/admin'
 import history from './history'
 
 
