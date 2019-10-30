@@ -3,12 +3,17 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 // import dayjs from 'dayjs'
 import format from 'date-fns/format'
+import {Modal} from 'antd'
 
 import './index.less'
 import LinkButton from '../../../components/link-button'
+import {removeUserToken} from '../../../redux/action-creators/user'
 
 
-@connect(state => ({username:state.user.user.username}))
+@connect(
+    state => ({username:state.user.user.username},
+    {removeUserToken}
+))
 @withRouter       //向组件内部传入三个属性：history/location/match
 class Header extends Component {
     state = {
@@ -18,7 +23,15 @@ class Header extends Component {
     }
 
     logout = () => {
-        alert('logout')
+        Modal.confirm({
+            title: '确认退出吗?',
+            onOk:() =>{
+              this.props.removeUserToken()
+            },
+            onCancel() {
+              console.log('Cancel');
+            },
+          })
     }
 
     componentDidMount (){

@@ -1,5 +1,5 @@
 import store from 'store'
-import StoreTable from 'antd/lib/table/Table'
+// import StoreTable from 'antd/lib/table/Table'
 
 function set(key,value){
     // localStorage.setItem(key,value instanceof Object? JSON.stringify(value):value)

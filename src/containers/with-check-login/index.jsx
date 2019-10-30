@@ -11,7 +11,7 @@ export default function WithCheckLogin(WrappedComponent){
         const path = this.props.location.pathname
         const {hasLogin,...rest} = this.props
         
-        if(path==='/login'&&hasLogin) return <Redirect to="/"/>
+        if(path==='/login'&& hasLogin) return <Redirect to="/"/>
         if(path!=='/login' && !hasLogin) return <Redirect to="/login"/>
         return <WrappedComponent {...rest}/>
     }

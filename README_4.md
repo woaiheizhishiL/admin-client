@@ -2,7 +2,6 @@
    7天免登陆
    请求token检查
    Admin整体界面
-   左侧导航
    头部界面
 
 ## 需要下载使用的相关插件 
@@ -29,17 +28,62 @@
        status为：401：token没有/国企，退出登录(清楚local和state中的user和token)，并跳转到登陆页面
        status为：404：提示访问的资源不存在
        其他的做统一的错误提示
-### 2. 封装localStorage,并使用store插件简化/完善封装
 
-### 3. 使用自定义高阶组件进行登陆检查
+### 2.在组件外部操作路由
+    1).使用<Router>代替<HashRouter>/</HashRouter>
+    2).利用history包生成BrotherHistory/HashHistory对象
+    3).将history传入<Router history={history}>
+    4).在组件外部使用history
+      路由跳转：history.push()/replace()
+      读取路径：history.location.pathname
 
-### 4. Admin整体结构和子路由的搭建
+### 3. 封装localStorage,并使用store插件简化/完善封装
+    1).针对token/user的local存储，使用原生localStorage封装get()/set()/remove()工具函数
+    2).使用store简化完善封装
 
-### 5. Admin的左侧导航组建实现
+### 4. 使用自定义高阶组件进行登陆检查
+    1).理解高阶组件:
+       一个高阶函数：接收一个组件，返回一个组件
+       作用：封装多个组件的公共功能部分
+    2).常见的第三方库中的高阶组件：
+       connect():封装了与redux的store交互，state和diapatch()
+       withRouter():封装了与路由交互的三个属性：history/location/match
+       Form.create():封装的表单数据收集和校验的对象：form
+    3).自定义登陆检查的高阶组件
+       封装登陆检查的判断处理
+       通过connect()读取hasLogin状态数据
+       通过...rest来将外部传入的属性都传入被包装组件
+    4).使用装饰器语法简化高阶组件的使用
+
+### 5. Admin整体结构和子路由的搭建
+    1).使用antd的Layout搭建整体结构
+    2).定义Admin的各个子路由：Switch/Route/Redirect
+    3).
+    4).
+    5).
+
 
 ### 6. Admin的头部组件实现
+    1).界面静态布局
+       三角形效果
+    2).获取登录用户的名称显示
+       读取状态中的username：connect()
+    3).当前时间
+       循环定时器，每隔1s更新当前时间状态
+       格式化指定时间：使用dayjs/date-fns库
+    4).当前导航项的标题
+       得到当前请求的路由path:withRouter()包装非路由组件
+       根据path在menuList中遍历查找对应的item的title
+    5).抽取通用的类链接按钮组件
+       通过...透传所有接收的属性：<button {...props}/>
+       组件标签的所有子节点都会成为组建的children属性
 
-
+### 5. Admin的左侧导航组建实现
+    1).
+    2).
+    3).
+    4).
+    5).
 
 
 

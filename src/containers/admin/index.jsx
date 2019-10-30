@@ -20,7 +20,7 @@ import Pie from '../../components/charts/pie'
 
 
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Footer, Sider, Content } = Layout;
 
 
 /* connect(

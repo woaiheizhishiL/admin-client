@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import {Redirect} from 'react-router-dom'
+// import {Redirect} from 'react-router-dom'
 import { Form, Icon, Input, Button } from "antd";
-import qs from 'qs'
+// import qs from 'qs'
 import {connect} from 'react-redux'
 
 import {loginAsync} from '../../redux/action-creators/user'
@@ -20,7 +20,7 @@ const { Item } = Form;
 )(Form.create()(WithCheckLogin(Login))) */
 
 @connect(
-  state =>({}),
+  state =>({}), 
   {loginAsync}
 )
 @Form.create()
