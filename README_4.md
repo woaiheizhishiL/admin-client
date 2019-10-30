@@ -9,6 +9,7 @@
    jsonwebtoken: 后台用来生成token和进行token娇艳的工具包
    run code：vscode插件  快速运行js代码
    store:用于浏览器存储的工具函数包
+   dayjs/date-fns/moment:日期处理
 
 ## 编码要点
 ### 1.登陆token验证

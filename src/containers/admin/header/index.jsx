@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
+// import dayjs from 'dayjs'
+import format from 'date-fns/format'
 
 import './index.less'
 import LinkButton from '../../../components/link-button'
@@ -9,13 +11,33 @@ import LinkButton from '../../../components/link-button'
 @connect(state => ({username:state.user.user.username}))
 @withRouter       //向组件内部传入三个属性：history/location/match
 class Header extends Component {
+    state = {
+        // currentTime:dayjs().format('YYYY-MM-DD HH:mm:ss')
+        currentTime:format(Date.now(),'yyy-MM-dd HH:mm:ss')
+
+    }
 
     logout = () => {
         alert('logout')
     }
+
+    componentDidMount (){
+        this.intervalId = setInterval(() => {
+            this.setState({
+                // currentTime:dayjs().format('YYYY-MM-DD HH:mm:ss')
+                currentTime:format(Date.now(),'yyy-MM-dd HH:mm:ss')
+            })
+        }, 1000);
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.intervalId)
+    }
+
     render() {
 
         const path = this.props.location.pathname
+        const {currentTime} = this.state
 
         return (
             <div className="header">
@@ -26,7 +48,7 @@ class Header extends Component {
                 <div className="header-bottom">
                     <div className="header-bottom-left">{path}</div>
                     <div className="header-bottom-right">
-                        <span>时间</span>
+                        <span>{currentTime}</span>
                         <img src="" alt="weather"/>
                         <span>小雨转多云</span>
                     </div>
