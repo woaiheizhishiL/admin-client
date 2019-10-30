@@ -8,6 +8,7 @@ import {Modal} from 'antd'
 import './index.less'
 import LinkButton from '../../../components/link-button'
 import {removeUserToken} from '../../../redux/action-creators/user'
+import {reqWeather} from '../../../api'
 
 
 @connect(
@@ -18,8 +19,9 @@ import {removeUserToken} from '../../../redux/action-creators/user'
 class Header extends Component {
     state = {
         // currentTime:dayjs().format('YYYY-MM-DD HH:mm:ss')
-        currentTime:format(Date.now(),'yyy-MM-dd HH:mm:ss')
-
+        currentTime:format(Date.now(),'yyy-MM-dd HH:mm:ss'),
+          dayPictureUrl:'',
+          weather:''
     }
 
     logout = () => {
@@ -34,6 +36,14 @@ class Header extends Component {
           })
     }
 
+    showWeather = async() => {
+        const {dayPictureUrl,weather} = await reqWeather('北京')
+        this.setState({
+            dayPictureUrl,
+            weather
+        })
+    }
+
     componentDidMount (){
         this.intervalId = setInterval(() => {
             this.setState({
@@ -41,8 +51,8 @@ class Header extends Component {
                 currentTime:format(Date.now(),'yyy-MM-dd HH:mm:ss')
             })
         }, 1000);
+        this.showWeather()
     }
-
     componentWillUnmount(){
         clearInterval(this.intervalId)
     }
@@ -50,8 +60,8 @@ class Header extends Component {
     render() {
 
         const path = this.props.location.pathname
-        const {currentTime} = this.state
-
+        const {currentTime,dayPictureUrl,weather} = this.state
+ 
         return (
             <div className="header">
                 <div className="header-top">
@@ -62,8 +72,8 @@ class Header extends Component {
                     <div className="header-bottom-left">{path}</div>
                     <div className="header-bottom-right">
                         <span>{currentTime}</span>
-                        <img src="" alt="weather"/>
-                        <span>小雨转多云</span>
+                        <img src={dayPictureUrl} alt="weather"/>
+                        <span>{weather}</span>
                     </div>
                 </div>
             </div>
